@@ -80,10 +80,15 @@ public class FontRendererSeparate extends FontRenderer {
             }
             int next = GL11.glGenTextures();
             TextureUtil.uploadTextureImage(next, img);
+            GL11.glBindTexture(GL11.GL_TEXTURE_2D, next);
+
+            GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_LINEAR);
+            GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_LINEAR);
+
             textureLocations.put(location, next);
             value = next;
         }
-        GL11.glBindTexture(GL11.GL_TEXTURE_2D, value.intValue());
+        GL11.glBindTexture(GL11.GL_TEXTURE_2D, value);
     }
 
     @Override
